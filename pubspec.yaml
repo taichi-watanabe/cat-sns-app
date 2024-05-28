@@ -31,6 +31,7 @@ dependencies:
   cached_network_image: ^3.3.1
   font_awesome_flutter:
   adaptive_dialog:
+  enum_to_string: ^2.0.1
 
 dev_dependencies:
   flutter_test:
