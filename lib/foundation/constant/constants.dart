@@ -17,12 +17,23 @@ class Constants {
 
   Flavor? get flavor => _flavor;
 
-  String baseUrl() {
+  String supabaseUrl() {
     switch (_flavor) {
       case Flavor.dev:
-        return 'https://dev03.syla-funding.jp/api/v1';
+        return 'https://sywjwvdfrfzkqxsnmhab.supabase.co';
       case Flavor.prod:
-        return 'https://rimawarikun.com/api/v1';
+        return 'https://sywjwvdfrfzkqxsnmhab.supabase.co';
+      default:
+        return '';
+    }
+  }
+
+  String supabaseAnonkey() {
+    switch (_flavor) {
+      case Flavor.dev:
+        return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN5d2p3dmRmcmZ6a3F4c25taGFiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTY4NTg2MTAsImV4cCI6MjAzMjQzNDYxMH0.ZjgG0cJGvgalvGGDITkmXBfIYdejQ1q-tRR4HjvnLpc';
+      case Flavor.prod:
+        return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN5d2p3dmRmcmZ6a3F4c25taGFiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTY4NTg2MTAsImV4cCI6MjAzMjQzNDYxMH0.ZjgG0cJGvgalvGGDITkmXBfIYdejQ1q-tRR4HjvnLpc';
       default:
         return '';
     }

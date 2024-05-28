@@ -47,14 +47,14 @@ class DashboardPage extends HookConsumerWidget {
                 tabsRouter.setActiveIndex(index);
               },
               items: [
-                _bottomNavitaionItem('assets/images/svg/home.svg', 'ねこ吸い', 0,
+                _bottomNavitaionItem('images/svg/nekosui.svg', 'ねこ吸い', 0,
                     tabsRouter.activeIndex),
-                _bottomNavitaionItem('assets/images/svg/fund_search.svg',
-                    'にゃわばり', 1, tabsRouter.activeIndex),
-                _bottomNavitaionItem('assets/images/svg/apply_fund.svg', '召使い',
-                    2, tabsRouter.activeIndex),
-                _bottomNavitaionItem('assets/images/svg/myfund.svg', 'お世話', 3,
+                _bottomNavitaionItem('images/svg/nyannkinng.svg', 'にゃわばり', 1,
                     tabsRouter.activeIndex),
+                _bottomNavitaionItem(
+                    'images/svg/account.svg', '召使い', 2, tabsRouter.activeIndex),
+                _bottomNavitaionItem(
+                    'images/svg/account.svg', 'お世話', 3, tabsRouter.activeIndex),
               ],
             ));
       },

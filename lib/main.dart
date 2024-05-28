@@ -1,3 +1,4 @@
+import 'package:cat_sns_app/foundation/constant/constants.dart';
 import 'package:cat_sns_app/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,16 +10,18 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  /* await Supabase.initialize(
-    url: 'https://iaoxrrbvzwtngohzkgym.supabase.co',
-    anonKey:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlhb3hycmJ2end0bmdvaHprZ3ltIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDYzMjc1MzIsImV4cCI6MjAyMTkwMzUzMn0.VRy6HykeLHec7KW3Fs5xiWxOK5bnd2ufGEnP2F-FliM',
-  ); */
+  await Supabase.initialize(
+      url: Constants.of().supabaseUrl(),
+      anonKey: Constants.of().supabaseAnonkey());
 
-  runApp(
-    const ProviderScope(
-      child: MyApp(),
-    ),
+  await initializeDateFormatting('ja_JP').then(
+    (_) {
+      runApp(
+        const ProviderScope(
+          child: MyApp(),
+        ),
+      );
+    },
   );
 }
 
@@ -30,11 +33,16 @@ class MyApp extends HookConsumerWidget with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
       supportedLocales: const [
         Locale('ja'),
       ],
       routerConfig: _appRouter.config(),
-      title: 'Monster habit',
+      title: 'Cat sns',
       theme: ThemeData(primarySwatch: Colors.blue),
     );
   }
