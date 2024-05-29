@@ -10,6 +10,8 @@ class PreferencesService {
   static const String KEY_USER_ID = 'user_id';
   static const String KEY_FCM_TOKEN = 'fcm_token';
   static const String KEY_LOGGEDIN_FLAG = 'loggedin_flag';
+  static const String keySemiForcedUpdateDialogShownVersion =
+      'semi_forced_update_dialog_shown_version';
 
   Future<bool> loadLoggedInFlag() async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
@@ -21,19 +23,9 @@ class PreferencesService {
     pref.setBool(KEY_LOGGEDIN_FLAG, flag);
   }
 
-  Future<String> loadAccessToken() async {
+  Future<String> loadUserId() async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
-    return pref.getString(KEY_ACCESS_TOKEN) ?? '';
-  }
-
-  Future<bool> saveAccessToken(String token) async {
-    final SharedPreferences pref = await SharedPreferences.getInstance();
-    return pref.setString(KEY_ACCESS_TOKEN, token);
-  }
-
-  Future<String?> loadUserId() async {
-    final SharedPreferences pref = await SharedPreferences.getInstance();
-    return pref.getString(KEY_USER_ID);
+    return pref.getString(KEY_USER_ID) ?? '';
   }
 
   Future saveUserId(String id) async {
@@ -55,5 +47,15 @@ class PreferencesService {
   Future<bool> clear() async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
     return pref.clear();
+  }
+
+  Future<String?> loadSemiForcedUpdateDialogShownVersion() async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    return pref.getString(keySemiForcedUpdateDialogShownVersion);
+  }
+
+  Future saveSemiForcedUpdateDialogShownVersion(String version) async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    return pref.setString(keySemiForcedUpdateDialogShownVersion, version);
   }
 }
