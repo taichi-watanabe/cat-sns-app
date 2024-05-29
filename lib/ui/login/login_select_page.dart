@@ -23,65 +23,70 @@ class LoginSelectPage extends HookConsumerWidget {
   Widget getBody(BuildContext context, WidgetRef ref) {
     return SafeArea(
         child: Center(
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 70,
-          ),
-          SizedBox(
-              width: 150,
-              height: 150,
-              child: Image.asset(Assets.images.png.osuwariChaCat.path)),
-          const SizedBox(
-            height: 22,
-          ),
-          const AppText(text: 'にゃわばり'),
-          const SizedBox(
-            height: 118,
-          ),
-          AppTextButton(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 70,
+            ),
+            SizedBox(
+                width: 150,
+                height: 150,
+                child: Image.asset(Assets.images.png.osuwariChaCat.path)),
+            const SizedBox(
+              height: 22,
+            ),
+            const AppText(text: 'にゃわばり'),
+            const SizedBox(
+              height: 118,
+            ),
+            AppTextButton(
+                height: 64,
+                text: const AppText(
+                  text: '会員登録',
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.textWhite,
+                ),
+                onPressed: () {},
+                borderRadius: 50,
+                backGroundColor: AppColors.primary),
+            const SizedBox(
+              height: 24,
+            ),
+            AppTextButton(
               height: 64,
               text: const AppText(
-                text: '会員登録',
+                text: 'ログイン',
                 fontSize: 15,
                 fontWeight: FontWeight.w600,
-                color: AppColors.textWhite,
+                color: AppColors.primary,
               ),
               onPressed: () {},
-              backGroundColor: AppColors.primary),
-          const SizedBox(
-            height: 24,
-          ),
-          AppTextButton(
-            height: 64,
-            text: const AppText(
-              text: 'ログイン',
-              fontSize: 15,
-              fontWeight: FontWeight.w600,
-              color: AppColors.primary,
+              backGroundColor: AppColorsUpdate.white,
+              borderColor: AppColors.primary,
+              borderRadius: 50,
+              borderWidth: 3,
             ),
-            onPressed: () {},
-            backGroundColor: AppColorsUpdate.white,
-            borderColor: AppColors.primary,
-            borderRadius: 50,
-            borderWidth: 3,
-          ),
-          const SizedBox(height: 57),
-          InkWell(
-            onTap: () {},
-            child: Row(
-              children: [
-                const AppText(
-                    text: "見る専の方はこちら",
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: AppColorsUpdate.gray04),
-                const SizedBox(width: 10),
-                SvgPicture.asset(Assets.images.svg.arrowRight)
-              ],
+            const SizedBox(height: 57),
+            InkWell(
+              onTap: () {},
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const AppText(
+                      text: "見る専の方はこちら",
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: AppColorsUpdate.gray04),
+                  const SizedBox(width: 10),
+                  SvgPicture.asset(Assets.images.svg.arrowRight)
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     ));
   }

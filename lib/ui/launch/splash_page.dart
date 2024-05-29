@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cat_sns_app/foundation/utils/version_check_manager.dart';
+import 'package:cat_sns_app/gen/assets.gen.dart';
 import 'package:cat_sns_app/model/enum/loggedin_type.dart';
 import 'package:cat_sns_app/repository/preferences/preferences_repository.dart';
 import 'package:cat_sns_app/router/app_router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../foundation/constant/app_colors.dart';
@@ -23,9 +23,9 @@ final _triggerNotifier = FutureProvider.family
       userId.isEmpty ? LoggedInType.notLoggedIn : LoggedInType.loggedIn;
 
   // Check if the app needs to be updated.
-  final _versionCheck = ref.watch(versionCheckManagerProvider);
+  /* final _versionCheck = ref.watch(versionCheckManagerProvider);
   final needUpdate = await _versionCheck.versionCheck();
-  if (needUpdate) _state = LoggedInType.needUpdate;
+  if (needUpdate) _state = LoggedInType.needUpdate; */
 
   return Future<LoggedInType>.value(_state);
 });
@@ -70,12 +70,9 @@ class SplashPage extends HookConsumerWidget {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset(
-              'assets/images/svg/splash-title.svg',
-              width: 200,
-            ),
-            const SizedBox(height: 14),
-            SizedBox(width: 200, child: Image.asset('assets/images/logo.png')),
+            SizedBox(
+                width: 200,
+                child: Image.asset(Assets.images.png.osuwariChaCat.path)),
           ],
         ),
       ),

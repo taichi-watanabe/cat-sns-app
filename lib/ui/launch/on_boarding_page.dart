@@ -40,12 +40,12 @@ class OnBoardingPage extends HookConsumerWidget {
         children: <Widget>[
           Container(
             decoration: const BoxDecoration(
-              image: DecorationImage(
+                /* image: DecorationImage(
                 image:
                     AssetImage('assets/images/png/on_boarding_background.png'),
                 fit: BoxFit.fill,
-              ),
-            ),
+              ), */
+                ),
           ),
           PageView(
               controller: state.pageController,
@@ -159,7 +159,7 @@ class OnBoardingPage extends HookConsumerWidget {
                   alignment: Alignment.topCenter,
                   height: isOverBreakHeight ? 547 : 420,
                   child: Image.asset(
-                    'assets/images/png/$image',
+                    image,
                     fit: BoxFit.contain,
                     width: isFullWidth
                         ? double.infinity
