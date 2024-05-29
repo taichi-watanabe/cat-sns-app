@@ -54,7 +54,7 @@ class SplashPage extends HookConsumerWidget {
             .loadLoggedInFlag()
             .then((isLoggedIn) {
           if (loggedInType == LoggedInType.notLoggedIn && isLoggedIn) {
-            /* context.replaceRoute(LoginRoute(useLaunchPage: true)); */
+            context.replaceRoute(const LoginSelectRoute());
           } else {
             /* context.replaceRoute(const OnBoardingRoute()); */
           }

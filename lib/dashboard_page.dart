@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:cat_sns_app/gen/assets.gen.dart';
 
 @RoutePage()
 class DashboardPage extends HookConsumerWidget {
@@ -47,14 +48,14 @@ class DashboardPage extends HookConsumerWidget {
                 tabsRouter.setActiveIndex(index);
               },
               items: [
-                _bottomNavitaionItem('images/svg/nekosui.svg', 'ねこ吸い', 0,
+                _bottomNavitaionItem(Assets.images.svg.nekosui, 'ねこ吸い', 0,
                     tabsRouter.activeIndex),
-                _bottomNavitaionItem('images/svg/nyannkinng.svg', 'にゃわばり', 1,
+                _bottomNavitaionItem(Assets.images.svg.nyannkinng, 'にゃわばり', 1,
                     tabsRouter.activeIndex),
-                _bottomNavitaionItem(
-                    'images/svg/account.svg', '召使い', 2, tabsRouter.activeIndex),
-                _bottomNavitaionItem(
-                    'images/svg/account.svg', 'お世話', 3, tabsRouter.activeIndex),
+                _bottomNavitaionItem(Assets.images.svg.account, '召使い', 2,
+                    tabsRouter.activeIndex),
+                _bottomNavitaionItem(Assets.images.svg.account, 'お世話', 3,
+                    tabsRouter.activeIndex),
               ],
             ));
       },

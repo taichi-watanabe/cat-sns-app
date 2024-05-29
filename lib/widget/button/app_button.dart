@@ -1,55 +1,50 @@
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class AppButton extends HookConsumerWidget {
-  const AppButton(
-      {required this.text,
+import '../../../foundation/constant/app_colors.dart';
+
+class AppTextButton extends HookConsumerWidget {
+  const AppTextButton(
+      {this.backGroundColor = AppColors.primary,
+      this.borderColor,
+      this.borderWidth,
       required this.onPressed,
-      this.backgroundColor,
-      this.textColor,
+      this.height = 48,
       this.width,
-      this.height,
-      this.fontSize,
-      this.icon,
+      this.margin,
+      required this.text,
+      this.borderRadius = 8,
       Key? key})
       : super(key: key);
-  final Color? backgroundColor;
-  final Color? textColor;
-  final String text;
+  final Color backGroundColor;
+  final Color? borderColor;
+  final double? borderWidth;
   final Function()? onPressed;
+  final Widget text;
+  final double height;
   final double? width;
-  final double? height;
-  final double? fontSize;
-  final IconData? icon;
+  final EdgeInsets? margin;
+  final double borderRadius;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return SizedBox(
-      width: width == null ? double.infinity : width!,
+    return Container(
+      margin: margin,
       height: height,
+      width: width ?? double.infinity,
       child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor:
-                backgroundColor == null ? Colors.white : backgroundColor!,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: backGroundColor,
+          shape: RoundedRectangleBorder(
+            side: borderColor != null
+                ? BorderSide(color: borderColor!, width: borderWidth ?? 1)
+                : BorderSide.none,
+            borderRadius: BorderRadius.circular(borderRadius),
           ),
-          onPressed: onPressed,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              if (text != '')
-                Text(
-                  text,
-                  style: TextStyle(
-                      color: textColor,
-                      fontSize: fontSize == null ? 20 : fontSize!,
-                      fontWeight: FontWeight.bold),
-                ),
-              if (icon != null) Icon(icon),
-            ],
-          )),
+        ),
+        child: text,
+        onPressed: onPressed,
+      ),
     );
   }
 }
