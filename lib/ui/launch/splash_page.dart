@@ -56,7 +56,7 @@ class SplashPage extends HookConsumerWidget {
           if (loggedInType == LoggedInType.notLoggedIn && isLoggedIn) {
             context.replaceRoute(const LoginSelectRoute());
           } else {
-            /* context.replaceRoute(const OnBoardingRoute()); */
+            context.replaceRoute(const OnBoardingRoute());
           }
         });
       }
