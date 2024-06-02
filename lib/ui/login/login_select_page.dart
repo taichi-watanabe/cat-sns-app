@@ -44,7 +44,7 @@ class LoginSelectPage extends HookConsumerWidget {
             AppTextButton(
                 height: 64,
                 text: const AppText(
-                  text: '会員登録',
+                  text: 'ユーザー登録',
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
                   color: AppColors.textWhite,
