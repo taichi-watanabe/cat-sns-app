@@ -56,6 +56,17 @@ date make_date "アカウント作成日"
         date update_at "更新日"
     }
 
+    article_tag {
+        string id "タグの紐づけ識別id"
+        string article_id "タグが付けられた記事のid"
+    　　 string tag_id "記事に付けられたタグid"
+    }
+
+    tags {
+        string id "タグを識別するid"
+        string name "タグ名"
+    }
+
     messages {
         string id "メッセージ識別id"
         string message "内容"
@@ -79,5 +90,7 @@ date make_date "アカウント作成日"
     articles ||--o{ comments : ""
     articles ||--o{ likes : ""
     articles ||--o{ stores : ""
+    articles ||--o{ article_tag : ""
+    tags ||--o{ article_tag : ""
 
 :::
