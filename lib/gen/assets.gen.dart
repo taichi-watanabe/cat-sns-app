@@ -39,6 +39,12 @@ class $ImagesSvgGen {
   /// File path: images/svg/arrow_right.svg
   String get arrowRight => 'images/svg/arrow_right.svg';
 
+  /// File path: images/svg/eye-slash.svg
+  String get eyeSlash => 'images/svg/eye-slash.svg';
+
+  /// File path: images/svg/eye.svg
+  String get eye => 'images/svg/eye.svg';
+
   /// File path: images/svg/nekosui.svg
   String get nekosui => 'images/svg/nekosui.svg';
 
@@ -46,7 +52,8 @@ class $ImagesSvgGen {
   String get nyannkinng => 'images/svg/nyannkinng.svg';
 
   /// List of all assets
-  List<String> get values => [account, arrowRight, nekosui, nyannkinng];
+  List<String> get values =>
+      [account, arrowRight, eyeSlash, eye, nekosui, nyannkinng];
 }
 
 class Assets {

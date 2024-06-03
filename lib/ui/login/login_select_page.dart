@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cat_sns_app/foundation/constant/app_colors.dart';
 import 'package:cat_sns_app/gen/assets.gen.dart';
+import 'package:cat_sns_app/router/app_router.gr.dart';
 import 'package:cat_sns_app/widget/button/app_button.dart';
 import 'package:cat_sns_app/widget/text/app_text.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +50,9 @@ class LoginSelectPage extends HookConsumerWidget {
                   fontWeight: FontWeight.w600,
                   color: AppColors.textWhite,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  context.router.push(SignupRoute());
+                },
                 borderRadius: 50,
                 backGroundColor: AppColors.primary),
             const SizedBox(
