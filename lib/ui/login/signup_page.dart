@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cat_sns_app/foundation/constant/app_colors.dart';
 import 'package:cat_sns_app/gen/assets.gen.dart';
+import 'package:cat_sns_app/router/app_router.gr.dart';
 import 'package:cat_sns_app/state/notifier/registration/registration_notifier.dart';
 import 'package:cat_sns_app/widget/button/app_button.dart';
+import 'package:cat_sns_app/widget/dialog/error_dialog.dart';
 import 'package:cat_sns_app/widget/form/app_form.dart';
 import 'package:cat_sns_app/widget/form/login_page_frame.dart';
 import 'package:cat_sns_app/widget/indicator/full_screen_indicator.dart';
@@ -220,16 +222,14 @@ class SignupPage extends HookConsumerWidget {
     }
 
     Widget _formButton() {
-      /* Future<void> _onTapRegisterButton() async {
+      Future<void> _onTapRegisterButton() async {
         _registrationNotifier.requestSignup().then((value) {
-          router.replace(const RegistrationCompleteAccountRoute());
+          context.router.replace(const DashboardRoute());
           FocusScope.of(context).unfocus();
-          ref.invalidate(accessTokenProvider);
-          ref.watch(fcmTokenNotifierProvider.notifier).updateFcmToken();
         }, onError: (_) {
           showErrorDialog(context: context, message: 'サインアップに失敗しました');
         });
-      } */
+      }
 
       return Column(
         children: [
@@ -247,13 +247,11 @@ class SignupPage extends HookConsumerWidget {
                 color: AppColors.textWhite,
               ),
               borderRadius: 32,
-              onPressed: () {
-                _canTapSignupPageButton
-                    ? () async {
-                        //_onTapRegisterButton();
-                      }
-                    : null;
-              }),
+              onPressed: _canTapSignupPageButton
+                  ? () async {
+                      _onTapRegisterButton();
+                    }
+                  : null),
         ],
       );
     }

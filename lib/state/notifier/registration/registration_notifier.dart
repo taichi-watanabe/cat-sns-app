@@ -1,4 +1,8 @@
 import 'package:cat_sns_app/foundation/constant/strings.dart';
+import 'package:cat_sns_app/foundation/utils/logger.dart';
+import 'package:cat_sns_app/model/signup.dart';
+import 'package:cat_sns_app/repository/auth/auth_repository.dart';
+import 'package:cat_sns_app/repository/preferences/preferences_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -14,18 +18,15 @@ class RegistrationNotifier extends _$RegistrationNotifier {
     return RegistrationItems();
   }
 
-  /* Future requestSignup() async {
+  Future requestSignup() async {
     try {
       showLoading();
       var _signup = Signup(
-          email: state.mailAddress,
-          password: state.password,
-          passwordConfirmation: state.confirmPassword);
-      var _customer =
+          name: state.name, email: state.mailAddress, password: state.password);
+      var _userId =
           await ref.watch(authRepositoryProvider).signup(signup: _signup);
-      await ref
-          .watch(preferencesRepositoryProvider)
-          .saveAccessToken(_customer?.token ?? '');
+      print(_userId);
+      await ref.watch(preferencesRepositoryProvider).saveUserId(_userId ?? '');
     } catch (e) {
       logger.severe('Error requestSignup' + e.toString());
       rethrow;
@@ -33,7 +34,7 @@ class RegistrationNotifier extends _$RegistrationNotifier {
       hideLoading();
     }
   }
-
+  /*
   Future requestRegisterUser() async {
     try {
       var _custormerProfile = CustomerProfile(

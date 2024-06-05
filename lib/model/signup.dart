@@ -9,7 +9,7 @@ class Signup with _$Signup {
     required String name,
     required String email,
     required String password,
-    required String passwordConfirmation,
+    String? passwordConfirmation,
   }) = _Signup;
 
   factory Signup.fromJson(Map<String, dynamic> json) => _$SignupFromJson(json);

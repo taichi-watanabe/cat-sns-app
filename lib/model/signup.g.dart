@@ -10,7 +10,7 @@ _$SignupImpl _$$SignupImplFromJson(Map<String, dynamic> json) => _$SignupImpl(
       name: json['name'] as String,
       email: json['email'] as String,
       password: json['password'] as String,
-      passwordConfirmation: json['passwordConfirmation'] as String,
+      passwordConfirmation: json['passwordConfirmation'] as String?,
     );
 
 Map<String, dynamic> _$$SignupImplToJson(_$SignupImpl instance) =>
