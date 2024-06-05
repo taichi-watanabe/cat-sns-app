@@ -1,20 +1,22 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cat_sns_app/foundation/constant/app_colors.dart';
+import 'package:cat_sns_app/gen/assets.gen.dart';
+import 'package:cat_sns_app/state/notifier/registration/registration_notifier.dart';
 import 'package:cat_sns_app/widget/button/app_button.dart';
 import 'package:cat_sns_app/widget/form/app_form.dart';
 import 'package:cat_sns_app/widget/form/login_page_frame.dart';
+import 'package:cat_sns_app/widget/indicator/full_screen_indicator.dart';
 import 'package:cat_sns_app/widget/navigation/app_header.dart';
 import 'package:cat_sns_app/widget/text/app_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @RoutePage()
 class SignupPage extends HookConsumerWidget {
   SignupPage({Key? key}) : super(key: key);
-
-  //final _formKey = GlobalKey<FormState>();
 
   final _nameFieldKey = GlobalKey<FormFieldState>();
   final _emailFieldKey = GlobalKey<FormFieldState>();
@@ -23,11 +25,11 @@ class SignupPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    /* final _registrationNotifier =
+    final _registrationNotifier =
         ref.watch(registrationNotifierProvider.notifier);
     var _registrationState = ref.watch(registrationNotifierProvider);
-    bool _canTapEmailPageButton =
-        ref.watch(registrationNotifierProvider).checkEmailPageButton; */
+    bool _canTapSignupPageButton =
+        ref.watch(registrationNotifierProvider).checkSignupPageButton;
 
     final _nameFocusNode = useFocusNode();
     final _emailFocusNode = useFocusNode();
@@ -67,17 +69,35 @@ class SignupPage extends HookConsumerWidget {
     Widget _formContents() {
       return Column(
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Container(
-              padding: const EdgeInsets.only(bottom: 24),
-              alignment: Alignment.centerLeft,
-              child: const AppText(
-                text: 'ログインID（メールアドレス）とパスワードの設定をしてください',
-                color: AppColors.textDark,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
+          Container(
+            padding: const EdgeInsets.only(bottom: 8),
+            alignment: Alignment.centerLeft,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const AppText(text: '召使い（ニックネーム）', fontSize: 14),
+                const SizedBox(height: 8),
+                AppForm(
+                  horizontalPadding: 16,
+                  verticalPadding: 14,
+                  hintSize: 16,
+                  fillColor: AppColorsUpdate.white,
+                  filled: true,
+                  borderSelect: false,
+                  fieldKey: _nameFieldKey,
+                  focusNode: _nameFocusNode,
+                  hintText: 'ユーザー名',
+                  onChanged: (value) {
+                    _registrationNotifier.setName(value);
+                    if (_nameFieldKey.currentState?.hasError == true) {
+                      _nameFieldKey.currentState?.validate();
+                    }
+                  },
+                  validationCallBack: (value) =>
+                      _registrationNotifier.nameValidator(value),
+                  textInputType: TextInputType.text,
+                ),
+              ],
             ),
           ),
           Container(
@@ -99,13 +119,13 @@ class SignupPage extends HookConsumerWidget {
                   focusNode: _emailFocusNode,
                   hintText: 'sample@sample.com',
                   onChanged: (value) {
-                    /*  _registrationNotifier.setMailAddress(value);
+                    _registrationNotifier.setMailAddress(value);
                     if (_emailFieldKey.currentState?.hasError == true) {
                       _emailFieldKey.currentState?.validate();
-                    } */
+                    }
                   },
-                  /* validationCallBack: (value) =>
-                      _registrationNotifier.mailValidator(value), */
+                  validationCallBack: (value) =>
+                      _registrationNotifier.mailValidator(value),
                   textInputType: TextInputType.emailAddress,
                 ),
               ],
@@ -130,13 +150,13 @@ class SignupPage extends HookConsumerWidget {
                   focusNode: _passwordFocusNode,
                   hintText: 'パスワード (半角英数字)',
                   onChanged: (value) {
-                    /* _registrationNotifier.setPassword(value);
+                    _registrationNotifier.setPassword(value);
                     if (_passwordFieldKey.currentState?.hasError == true) {
                       _passwordFieldKey.currentState?.validate();
-                    } */
+                    }
                   },
-                  /* validationCallBack: (value) =>
-                      _registrationNotifier.passValidator(value), */
+                  validationCallBack: (value) =>
+                      _registrationNotifier.passValidator(value),
                   textInputType: TextInputType.visiblePassword,
                   isIconVisible: true,
                 ),
@@ -166,17 +186,35 @@ class SignupPage extends HookConsumerWidget {
               fieldKey: _conformPasswordFieldKey,
               hintText: 'パスワード (半角英数字)',
               onChanged: (value) {
-                /* _registrationNotifier.setConfirmPassword(value);
+                _registrationNotifier.setConfirmPassword(value);
                 if (_conformPasswordFieldKey.currentState?.hasError == true) {
                   _conformPasswordFieldKey.currentState?.validate();
-                } */
+                }
               },
-              /* validationCallBack: (value) =>
-                  _registrationNotifier.confirmPassValidator(value), */
+              validationCallBack: (value) =>
+                  _registrationNotifier.confirmPassValidator(value),
               textInputType: TextInputType.visiblePassword,
               isIconVisible: true,
             ),
           ),
+          Row(
+            children: [
+              SvgPicture.asset(Assets.images.svg.symbolForBeginner),
+              const SizedBox(width: 8),
+              const AppText(
+                text: '初めてご利用の方へ',
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: AppColorsUpdate.black01,
+              )
+            ],
+          ),
+          const SizedBox(height: 11),
+          const AppText(
+              color: AppColorsUpdate.black01,
+              fontSize: 9,
+              text:
+                  '今回登録するメールアドレスとパスワードは、再度ログインする場合に必要となります。お間違いのないようにご注意ください。\nまた、メールアドレスはログイン時のみ使用いたします。広告メールやスパム等は送られて来ませんのでご安心ください。')
         ],
       );
     }
@@ -209,31 +247,22 @@ class SignupPage extends HookConsumerWidget {
                 color: AppColors.textWhite,
               ),
               borderRadius: 32,
-              onPressed: () {}
-              /* //紹介コードを使用する場合
-                  _registrationState.useFriendCode
-                      ? _canTapEmailPageButton &&
-                              _registrationState.checkFriendCode
-                          ? () async {
-                              _onTapRegisterButton();
-                            }
-                          : null
-                      :
-                      //紹介コードを使用しない場合
-                      _canTapEmailPageButton
-                          ? () async {
-                              _onTapRegisterButton();
-                            }
-                          : null */
-              ),
+              onPressed: () {
+                _canTapSignupPageButton
+                    ? () async {
+                        //_onTapRegisterButton();
+                      }
+                    : null;
+              }),
         ],
       );
     }
 
     Future<bool> _willPopCallback() async {
-      /* _registrationNotifier.setMailAddress('');
+      _registrationNotifier.setName('');
+      _registrationNotifier.setMailAddress('');
       _registrationNotifier.setPassword('');
-      _registrationNotifier.setConfirmPassword(''); */
+      _registrationNotifier.setConfirmPassword('');
       return true;
     }
 
@@ -256,12 +285,15 @@ class SignupPage extends HookConsumerWidget {
                   context.router.pop();
                 }),
               ),
-              body: LoginPageFrame(
-                _formContents(),
-                _formButton(),
+              body: Padding(
+                padding: const EdgeInsets.only(top: 16),
+                child: LoginPageFrame(
+                  _formContents(),
+                  _formButton(),
+                ),
               ),
             ),
-            //if (_registrationState.isLoading) FullScreenIndicator()
+            if (_registrationState.isLoading) FullScreenIndicator()
           ],
         ),
       ),

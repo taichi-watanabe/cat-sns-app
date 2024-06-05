@@ -26,7 +26,7 @@ mixin _$User {
   String? get email => throw _privateConstructorUsedError;
   String? get password => throw _privateConstructorUsedError;
   String? get passwordComfirm => throw _privateConstructorUsedError;
-  DateTime? get createdAt => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +45,7 @@ abstract class $UserCopyWith<$Res> {
       String? email,
       String? password,
       String? passwordComfirm,
-      DateTime? createdAt});
+      String? createdAt});
 }
 
 /// @nodoc
@@ -97,7 +97,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
     ) as $Val);
   }
 }
@@ -116,7 +116,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       String? email,
       String? password,
       String? passwordComfirm,
-      DateTime? createdAt});
+      String? createdAt});
 }
 
 /// @nodoc
@@ -165,7 +165,7 @@ class __$$UserImplCopyWithImpl<$Res>
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
     ));
   }
 }
@@ -198,7 +198,7 @@ class _$UserImpl with DiagnosticableTreeMixin implements _User {
   @override
   final String? passwordComfirm;
   @override
-  final DateTime? createdAt;
+  final String? createdAt;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -264,7 +264,7 @@ abstract class _User implements User {
       final String? email,
       final String? password,
       final String? passwordComfirm,
-      final DateTime? createdAt}) = _$UserImpl;
+      final String? createdAt}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
@@ -281,7 +281,7 @@ abstract class _User implements User {
   @override
   String? get passwordComfirm;
   @override
-  DateTime? get createdAt;
+  String? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>

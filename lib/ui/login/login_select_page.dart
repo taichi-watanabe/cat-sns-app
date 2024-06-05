@@ -66,7 +66,9 @@ class LoginSelectPage extends HookConsumerWidget {
                 fontWeight: FontWeight.w600,
                 color: AppColors.primary,
               ),
-              onPressed: () {},
+              onPressed: () {
+                context.router.push(LoginRoute());
+              },
               backGroundColor: AppColorsUpdate.white,
               borderColor: AppColors.primary,
               borderRadius: 50,

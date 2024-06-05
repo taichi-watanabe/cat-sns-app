@@ -13,7 +13,7 @@ class User with _$User {
     String? email,
     String? password,
     String? passwordComfirm,
-    DateTime? createdAt,
+    String? createdAt,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

@@ -107,24 +107,24 @@ class RegistrationNotifier extends _$RegistrationNotifier {
     }
   } */
 
-  void setMailAddress(String value) {
-    state = state.copyWith(mailAddress: value);
-    checkEmailPageButton();
+  void setName(String value) {
+    state = state.copyWith(name: value);
+    checkSignupPageButton();
   }
 
-  void setEditMailAddress(String value) {
+  void setMailAddress(String value) {
     state = state.copyWith(mailAddress: value);
-    checkEditEmailPageButton();
+    checkSignupPageButton();
   }
 
   void setPassword(String value) {
     state = state.copyWith(password: value);
-    checkEmailPageButton();
+    checkSignupPageButton();
   }
 
   void setConfirmPassword(String value) {
     state = state.copyWith(confirmPassword: value);
-    checkEmailPageButton();
+    checkSignupPageButton();
   }
 
   String? nameValidator(String? value) {
@@ -166,11 +166,9 @@ class RegistrationNotifier extends _$RegistrationNotifier {
     return null;
   }
 
-  void checkEditEmailPageButton() => state = state.copyWith(
-      checkEditEmailPageButton: mailValidator(state.mailAddress) == null);
-
-  void checkEmailPageButton() => state = state.copyWith(
-      checkEmailPageButton: (mailValidator(state.mailAddress) == null &&
+  void checkSignupPageButton() => state = state.copyWith(
+      checkSignupPageButton: (nameValidator(state.name) == null &&
+          mailValidator(state.mailAddress) == null &&
           passValidator(state.password) == null &&
           confirmPassValidator(state.confirmPassword) == null));
 
@@ -185,9 +183,7 @@ class RegistrationItems with _$RegistrationItems {
     @Default("") String mailAddress,
     @Default("") String password,
     @Default("") String confirmPassword,
-    @Default(false) bool checkEmailPageButton,
-    @Default(false) bool checkEditEmailPageButton,
-    @Default(false) bool checkNamePageButton,
+    @Default(false) bool checkSignupPageButton,
     @Default(false) bool isLoading,
   }) = _RegistrationItems;
 }

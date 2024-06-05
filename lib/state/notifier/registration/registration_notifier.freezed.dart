@@ -20,9 +20,7 @@ mixin _$RegistrationItems {
   String get mailAddress => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   String get confirmPassword => throw _privateConstructorUsedError;
-  bool get checkEmailPageButton => throw _privateConstructorUsedError;
-  bool get checkEditEmailPageButton => throw _privateConstructorUsedError;
-  bool get checkNamePageButton => throw _privateConstructorUsedError;
+  bool get checkSignupPageButton => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -41,9 +39,7 @@ abstract class $RegistrationItemsCopyWith<$Res> {
       String mailAddress,
       String password,
       String confirmPassword,
-      bool checkEmailPageButton,
-      bool checkEditEmailPageButton,
-      bool checkNamePageButton,
+      bool checkSignupPageButton,
       bool isLoading});
 }
 
@@ -64,9 +60,7 @@ class _$RegistrationItemsCopyWithImpl<$Res, $Val extends RegistrationItems>
     Object? mailAddress = null,
     Object? password = null,
     Object? confirmPassword = null,
-    Object? checkEmailPageButton = null,
-    Object? checkEditEmailPageButton = null,
-    Object? checkNamePageButton = null,
+    Object? checkSignupPageButton = null,
     Object? isLoading = null,
   }) {
     return _then(_value.copyWith(
@@ -86,17 +80,9 @@ class _$RegistrationItemsCopyWithImpl<$Res, $Val extends RegistrationItems>
           ? _value.confirmPassword
           : confirmPassword // ignore: cast_nullable_to_non_nullable
               as String,
-      checkEmailPageButton: null == checkEmailPageButton
-          ? _value.checkEmailPageButton
-          : checkEmailPageButton // ignore: cast_nullable_to_non_nullable
-              as bool,
-      checkEditEmailPageButton: null == checkEditEmailPageButton
-          ? _value.checkEditEmailPageButton
-          : checkEditEmailPageButton // ignore: cast_nullable_to_non_nullable
-              as bool,
-      checkNamePageButton: null == checkNamePageButton
-          ? _value.checkNamePageButton
-          : checkNamePageButton // ignore: cast_nullable_to_non_nullable
+      checkSignupPageButton: null == checkSignupPageButton
+          ? _value.checkSignupPageButton
+          : checkSignupPageButton // ignore: cast_nullable_to_non_nullable
               as bool,
       isLoading: null == isLoading
           ? _value.isLoading
@@ -119,9 +105,7 @@ abstract class _$$RegistrationItemsImplCopyWith<$Res>
       String mailAddress,
       String password,
       String confirmPassword,
-      bool checkEmailPageButton,
-      bool checkEditEmailPageButton,
-      bool checkNamePageButton,
+      bool checkSignupPageButton,
       bool isLoading});
 }
 
@@ -140,9 +124,7 @@ class __$$RegistrationItemsImplCopyWithImpl<$Res>
     Object? mailAddress = null,
     Object? password = null,
     Object? confirmPassword = null,
-    Object? checkEmailPageButton = null,
-    Object? checkEditEmailPageButton = null,
-    Object? checkNamePageButton = null,
+    Object? checkSignupPageButton = null,
     Object? isLoading = null,
   }) {
     return _then(_$RegistrationItemsImpl(
@@ -162,17 +144,9 @@ class __$$RegistrationItemsImplCopyWithImpl<$Res>
           ? _value.confirmPassword
           : confirmPassword // ignore: cast_nullable_to_non_nullable
               as String,
-      checkEmailPageButton: null == checkEmailPageButton
-          ? _value.checkEmailPageButton
-          : checkEmailPageButton // ignore: cast_nullable_to_non_nullable
-              as bool,
-      checkEditEmailPageButton: null == checkEditEmailPageButton
-          ? _value.checkEditEmailPageButton
-          : checkEditEmailPageButton // ignore: cast_nullable_to_non_nullable
-              as bool,
-      checkNamePageButton: null == checkNamePageButton
-          ? _value.checkNamePageButton
-          : checkNamePageButton // ignore: cast_nullable_to_non_nullable
+      checkSignupPageButton: null == checkSignupPageButton
+          ? _value.checkSignupPageButton
+          : checkSignupPageButton // ignore: cast_nullable_to_non_nullable
               as bool,
       isLoading: null == isLoading
           ? _value.isLoading
@@ -190,9 +164,7 @@ class _$RegistrationItemsImpl implements _RegistrationItems {
       this.mailAddress = "",
       this.password = "",
       this.confirmPassword = "",
-      this.checkEmailPageButton = false,
-      this.checkEditEmailPageButton = false,
-      this.checkNamePageButton = false,
+      this.checkSignupPageButton = false,
       this.isLoading = false});
 
   @override
@@ -209,20 +181,14 @@ class _$RegistrationItemsImpl implements _RegistrationItems {
   final String confirmPassword;
   @override
   @JsonKey()
-  final bool checkEmailPageButton;
-  @override
-  @JsonKey()
-  final bool checkEditEmailPageButton;
-  @override
-  @JsonKey()
-  final bool checkNamePageButton;
+  final bool checkSignupPageButton;
   @override
   @JsonKey()
   final bool isLoading;
 
   @override
   String toString() {
-    return 'RegistrationItems(name: $name, mailAddress: $mailAddress, password: $password, confirmPassword: $confirmPassword, checkEmailPageButton: $checkEmailPageButton, checkEditEmailPageButton: $checkEditEmailPageButton, checkNamePageButton: $checkNamePageButton, isLoading: $isLoading)';
+    return 'RegistrationItems(name: $name, mailAddress: $mailAddress, password: $password, confirmPassword: $confirmPassword, checkSignupPageButton: $checkSignupPageButton, isLoading: $isLoading)';
   }
 
   @override
@@ -237,28 +203,15 @@ class _$RegistrationItemsImpl implements _RegistrationItems {
                 other.password == password) &&
             (identical(other.confirmPassword, confirmPassword) ||
                 other.confirmPassword == confirmPassword) &&
-            (identical(other.checkEmailPageButton, checkEmailPageButton) ||
-                other.checkEmailPageButton == checkEmailPageButton) &&
-            (identical(
-                    other.checkEditEmailPageButton, checkEditEmailPageButton) ||
-                other.checkEditEmailPageButton == checkEditEmailPageButton) &&
-            (identical(other.checkNamePageButton, checkNamePageButton) ||
-                other.checkNamePageButton == checkNamePageButton) &&
+            (identical(other.checkSignupPageButton, checkSignupPageButton) ||
+                other.checkSignupPageButton == checkSignupPageButton) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      name,
-      mailAddress,
-      password,
-      confirmPassword,
-      checkEmailPageButton,
-      checkEditEmailPageButton,
-      checkNamePageButton,
-      isLoading);
+  int get hashCode => Object.hash(runtimeType, name, mailAddress, password,
+      confirmPassword, checkSignupPageButton, isLoading);
 
   @JsonKey(ignore: true)
   @override
@@ -274,9 +227,7 @@ abstract class _RegistrationItems implements RegistrationItems {
       final String mailAddress,
       final String password,
       final String confirmPassword,
-      final bool checkEmailPageButton,
-      final bool checkEditEmailPageButton,
-      final bool checkNamePageButton,
+      final bool checkSignupPageButton,
       final bool isLoading}) = _$RegistrationItemsImpl;
 
   @override
@@ -288,11 +239,7 @@ abstract class _RegistrationItems implements RegistrationItems {
   @override
   String get confirmPassword;
   @override
-  bool get checkEmailPageButton;
-  @override
-  bool get checkEditEmailPageButton;
-  @override
-  bool get checkNamePageButton;
+  bool get checkSignupPageButton;
   @override
   bool get isLoading;
   @override

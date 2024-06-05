@@ -1,3 +1,4 @@
+import 'package:cat_sns_app/foundation/constant/app_colors.dart';
 import 'package:cat_sns_app/foundation/constant/constants.dart';
 import 'package:cat_sns_app/router/app_router.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +44,9 @@ class MyApp extends HookConsumerWidget with WidgetsBindingObserver {
       ],
       routerConfig: _appRouter.config(),
       title: 'Cat sns',
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(
+          primarySwatch: AppColors.primary,
+          secondaryHeaderColor: AppColors.primary),
     );
   }
 }

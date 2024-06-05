@@ -60,6 +60,7 @@ class AppForm extends ConsumerWidget {
     final _hidePassword = ref.watch(passwordDisplayProvider);
 
     return TextFormField(
+      cursorColor: AppColors.primary,
       autocorrect: autocorrect,
       scrollPadding: EdgeInsets.only(bottom: bottomScrollPadding),
       key: fieldKey,
@@ -77,6 +78,9 @@ class AppForm extends ConsumerWidget {
       validator: (value) =>
           validationCallBack != null ? validationCallBack!(value) : null,
       decoration: InputDecoration(
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: const BorderSide(color: AppColors.primary, width: 2)),
         fillColor: fillColor,
         filled: filled,
         isDense: true,

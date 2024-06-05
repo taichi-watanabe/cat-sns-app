@@ -78,9 +78,7 @@ class Constants {
     }
   } */
 
-  String appleStoreUrl = 'https://apps.apple.com/jp/app/id6462055936?mt=8';
+  /* String appleStoreUrl = 'https://apps.apple.com/jp/app/id6462055936?mt=8';
   String playStoreUrl =
-      'https://play.google.com/store/apps/details?id=com.rimawarikun';
-
-  String rimawarikunVersionHeaderKey = 'Rimawarikun-Version';
+      'https://play.google.com/store/apps/details?id=com.rimawarikun'; */
 }

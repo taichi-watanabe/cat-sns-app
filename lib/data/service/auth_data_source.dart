@@ -2,7 +2,7 @@ import 'package:cat_sns_app/model/signup.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-final Provider<AuthDataSource> userDataSourceProvider =
+final Provider<AuthDataSource> authDataSourceProvider =
     Provider<AuthDataSource>((ref) => AuthDataSource());
 
 class AuthDataSource {
@@ -17,17 +17,18 @@ class AuthDataSource {
       String? _token = value.data!.tryAt<String?>('token', null);
       return _token;
     });
-  } */
+  } 
 
-  /* Future logOut() async {
+  Future logOut() async {
     return await _dio
         .delete('/customers/logout')
         .then((value) => logger.info('Success Logout'));
   } */
 
-  /* Future<User?> signup({required Signup signup}) async {
-    return await supabase
-        .post<Map<String, dynamic>>('/signup', data: signup.toJson())
-        .then((value) => CustomerProfile.fromForNull(value.data));
-  } */
+  Future<String?> signup({required Signup signup}) async {
+    return await supabase.auth.signUp(
+        email: signup.email,
+        password: signup.password,
+        data: {'name': signup.name}).then((value) => value.user!.id);
+  }
 }
