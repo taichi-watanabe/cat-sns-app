@@ -15,5 +15,5 @@ abstract class AuthRepository {
 
   Future<String?> signup({required Signup signup});
   //Future<String?> logIn({required Login login});
-  //Future logOut();
+  Future logOut();
 }

@@ -12,12 +12,12 @@ class AuthRepositoryImpl implements AuthRepository {
   /* @override
   Future<String?> logIn({required Login login}) async {
     return await _authDataSource.logIn(login: login);
-  }
+  }*/
 
   @override
   Future logOut() async {
     return await _authDataSource.logOut();
-  } */
+  }
 
   @override
   Future<String?> signup({required Signup signup}) async {

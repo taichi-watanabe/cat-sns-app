@@ -1,8 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cat_sns_app/foundation/constant/app_colors.dart';
 import 'package:cat_sns_app/gen/assets.gen.dart';
+import 'package:cat_sns_app/router/app_router.gr.dart';
+import 'package:cat_sns_app/state/notifier/lauch/login_notifier.dart';
 import 'package:cat_sns_app/state/user_id.dart';
 import 'package:cat_sns_app/ui/login/login_select_page.dart';
+import 'package:cat_sns_app/widget/button/app_button.dart';
 import 'package:cat_sns_app/widget/text/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -53,7 +56,16 @@ class SettingPage extends HookConsumerWidget {
                 _listSectionHeader('基本情報'),
                 _listColumn(_infomationList(), ref: ref),
                 _listSectionHeader('サポート'),
-                _listColumn(_supportList(context, ref), ref: ref)
+                _listColumn(_supportList(context, ref), ref: ref),
+                AppTextButton(
+                    onPressed: () async {
+                      // ログアウト処理
+                      await ref.watch(loginNotifierProvider.notifier).logout();
+                      context.router.replaceAll([const SplashRoute()]);
+                    },
+                    text: AppText(
+                      text: 'ログアウト',
+                    ))
               ],
             ),
           ),
@@ -175,7 +187,7 @@ class SettingPage extends HookConsumerWidget {
 // 基本情報
   List<_AccountListItem> _infomationList() => [
         _AccountListItem(
-            title: 'Monster Habitについて',
+            title: 'にゃわばりについて',
             icon: Assets.images.svg.iconNote,
             onTapCallBack: () => null),
         _AccountListItem(

@@ -4,22 +4,22 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'auth_repository.dart';
 
-/* class AuthRepositoryMock implements AuthRepository {
+class AuthRepositoryMock implements AuthRepository {
   AuthRepositoryMock();
 
   @override
-  Future<User?> signup({required Signup signup}) {
+  Future<String?> signup({required Signup signup}) {
     throw UnimplementedError();
   }
 
-  @override
+  /* @override
   Future<String?> logIn({required Login login}) {
     return Future.delayed(const Duration(seconds: 2))
         .then((value) => 'aaaaaaaa');
-  }
+  } */
 
   @override
   Future logOut() async {
     return await Future.delayed(const Duration(seconds: 1));
   }
-} */
+}

@@ -1,3 +1,4 @@
+import 'package:cat_sns_app/foundation/utils/logger.dart';
 import 'package:cat_sns_app/model/signup.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -18,12 +19,12 @@ class AuthDataSource {
       return _token;
     });
   } 
-
+*/
   Future logOut() async {
-    return await _dio
-        .delete('/customers/logout')
+    return supabase.auth
+        .signOut()
         .then((value) => logger.info('Success Logout'));
-  } */
+  }
 
   Future<String?> signup({required Signup signup}) async {
     return await supabase.auth.signUp(
