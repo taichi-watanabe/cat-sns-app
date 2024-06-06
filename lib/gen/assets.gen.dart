@@ -39,14 +39,39 @@ class $ImagesSvgGen {
   /// File path: images/svg/angle-right-solid.svg
   String get angleRightSolid => 'images/svg/angle-right-solid.svg';
 
+  /// File path: images/svg/arrow-forward.svg
+  String get arrowForward => 'images/svg/arrow-forward.svg';
+
   /// File path: images/svg/arrow_right.svg
   String get arrowRight => 'images/svg/arrow_right.svg';
+
+  /// File path: images/svg/event.svg
+  String get event => 'images/svg/event.svg';
 
   /// File path: images/svg/eye-slash.svg
   String get eyeSlash => 'images/svg/eye-slash.svg';
 
   /// File path: images/svg/eye.svg
   String get eye => 'images/svg/eye.svg';
+
+  /// File path: images/svg/icon_information.svg
+  String get iconInformation => 'images/svg/icon_information.svg';
+
+  /// File path: images/svg/icon_investorInformation.svg
+  String get iconInvestorInformation =>
+      'images/svg/icon_investorInformation.svg';
+
+  /// File path: images/svg/icon_mail.svg
+  String get iconMail => 'images/svg/icon_mail.svg';
+
+  /// File path: images/svg/icon_note.svg
+  String get iconNote => 'images/svg/icon_note.svg';
+
+  /// File path: images/svg/icon_privacy.svg
+  String get iconPrivacy => 'images/svg/icon_privacy.svg';
+
+  /// File path: images/svg/icon_version.svg
+  String get iconVersion => 'images/svg/icon_version.svg';
 
   /// File path: images/svg/nekosui.svg
   String get nekosui => 'images/svg/nekosui.svg';
@@ -61,9 +86,17 @@ class $ImagesSvgGen {
   List<String> get values => [
         account,
         angleRightSolid,
+        arrowForward,
         arrowRight,
+        event,
         eyeSlash,
         eye,
+        iconInformation,
+        iconInvestorInformation,
+        iconMail,
+        iconNote,
+        iconPrivacy,
+        iconVersion,
         nekosui,
         nyannkinng,
         symbolForBeginner
