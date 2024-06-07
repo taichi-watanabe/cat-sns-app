@@ -1,4 +1,6 @@
 import 'package:cat_sns_app/foundation/utils/logger.dart';
+import 'package:cat_sns_app/model/custom_exception.dart';
+import 'package:cat_sns_app/model/login.dart';
 import 'package:cat_sns_app/repository/preferences/preferences_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -16,8 +18,15 @@ class LoginNotifier extends _$LoginNotifier {
     return LoginItems();
   }
 
-  void setMail(String value) => state = state.copyWith(mail: value);
-  void setPassword(String value) => state = state.copyWith(password: value);
+  void setMail(String value) {
+    state = state.copyWith(mail: value);
+    checkLoginPageButton();
+  }
+
+  void setPassword(String value) {
+    state = state.copyWith(password: value);
+    checkLoginPageButton();
+  }
 
   String? mailValidator(String? value) {
     RegExp regExp = RegExp(Strings.mailPattern);
@@ -39,7 +48,11 @@ class LoginNotifier extends _$LoginNotifier {
     return null;
   }
 
-  /* Future login() async {
+  void checkLoginPageButton() => state = state.copyWith(
+      checkLoginPageButton: (mailValidator(state.mail) == null &&
+          passValidator(state.password) == null));
+
+  Future login() async {
     String? mailError = mailValidator(state.mail);
     String? passError = passValidator(state.password);
 
@@ -63,31 +76,16 @@ class LoginNotifier extends _$LoginNotifier {
     try {
       _showLoading();
       var _login = Login(email: state.mail, password: state.password);
-      var _token = await ref.watch(authRepositoryProvider).logIn(login: _login);
-      if (_token == null) throw CustomException('ログインに失敗しました');
-      await saveTokenAndUserInfo(token: _token);
+      var _uid = await ref.watch(authRepositoryProvider).logIn(login: _login);
+      if (_uid == null) throw CustomException('ログインに失敗しました');
+      await ref.watch(preferencesRepositoryProvider).saveUserId(_uid);
     } catch (e) {
       logger.severe('Error login' + e.toString());
       rethrow;
     } finally {
       _hideLoading();
     }
-  } */
-
-  /* Future<void> saveTokenAndUserInfo({
-    required String token,
-  }) async {
-    await ref.watch(preferencesRepositoryProvider).saveAccessToken(token);
-    var _me = await ref.watch(customersRepositoryProvider).me();
-    var _userId = _me?.customer?.id;
-    if (_userId != null) {
-      await ref.watch(preferencesRepositoryProvider).saveUserId(_userId);
-      await ref.watch(analyticsManagerProvider).setUserId(_userId);
-      await Sentry.configureScope(
-        (scope) => scope.setUser(SentryUser(id: _userId)),
-      );
-    }
-  } */
+  }
 
   Future logout() async {
     try {
@@ -117,6 +115,7 @@ class LoginItems with _$LoginItems {
   factory LoginItems({
     @Default("") String mail,
     @Default("") String password,
+    @Default(false) bool checkLoginPageButton,
     @Default(false) bool isLoading,
   }) = _LoginItems;
 }

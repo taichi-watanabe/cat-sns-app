@@ -1,4 +1,5 @@
 import 'package:cat_sns_app/foundation/utils/logger.dart';
+import 'package:cat_sns_app/model/login.dart';
 import 'package:cat_sns_app/model/signup.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -9,17 +10,16 @@ final Provider<AuthDataSource> authDataSourceProvider =
 class AuthDataSource {
   final supabase = Supabase.instance.client;
 
-  /* Future<String?> logIn({required Login login}) async {
-    return await _dio
-        .post<Map<String, dynamic>>('/customers/login',
-            data: login.createLogin())
+  Future<String?> logIn({required Login login}) async {
+    return await supabase.auth
+        .signInWithPassword(email: login.email, password: login.password)
         .then((value) {
-      if (value.data == null) return null;
-      String? _token = value.data!.tryAt<String?>('token', null);
-      return _token;
+      if (value.user!.id.isEmpty) return null;
+      String? uid = value.user!.id;
+      return uid;
     });
-  } 
-*/
+  }
+
   Future logOut() async {
     return supabase.auth
         .signOut()

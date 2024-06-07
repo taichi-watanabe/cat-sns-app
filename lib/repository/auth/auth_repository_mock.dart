@@ -1,6 +1,5 @@
 import 'package:cat_sns_app/model/login.dart';
 import 'package:cat_sns_app/model/signup.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'auth_repository.dart';
 
@@ -12,11 +11,11 @@ class AuthRepositoryMock implements AuthRepository {
     throw UnimplementedError();
   }
 
-  /* @override
+  @override
   Future<String?> logIn({required Login login}) {
     return Future.delayed(const Duration(seconds: 2))
         .then((value) => 'aaaaaaaa');
-  } */
+  }
 
   @override
   Future logOut() async {

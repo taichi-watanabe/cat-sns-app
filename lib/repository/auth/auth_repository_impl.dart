@@ -9,10 +9,10 @@ class AuthRepositoryImpl implements AuthRepository {
       : _authDataSource = authDataSource;
   final AuthDataSource _authDataSource;
 
-  /* @override
+  @override
   Future<String?> logIn({required Login login}) async {
     return await _authDataSource.logIn(login: login);
-  }*/
+  }
 
   @override
   Future logOut() async {

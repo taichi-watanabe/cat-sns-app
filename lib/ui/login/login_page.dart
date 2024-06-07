@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cat_sns_app/foundation/constant/app_colors.dart';
 import 'package:cat_sns_app/gen/assets.gen.dart';
-import 'package:cat_sns_app/state/notifier/registration/registration_notifier.dart';
+import 'package:cat_sns_app/router/app_router.gr.dart';
+import 'package:cat_sns_app/state/notifier/lauch/login_notifier.dart';
 import 'package:cat_sns_app/widget/button/app_button.dart';
+import 'package:cat_sns_app/widget/dialog/error_dialog.dart';
 import 'package:cat_sns_app/widget/form/app_form.dart';
 import 'package:cat_sns_app/widget/form/login_page_frame.dart';
 import 'package:cat_sns_app/widget/indicator/full_screen_indicator.dart';
@@ -23,11 +25,10 @@ class LoginPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _registrationNotifier =
-        ref.watch(registrationNotifierProvider.notifier);
-    var _registrationState = ref.watch(registrationNotifierProvider);
-    bool _canTapSignupPageButton =
-        ref.watch(registrationNotifierProvider).checkSignupPageButton;
+    final _loginNotifier = ref.watch(loginNotifierProvider.notifier);
+    var _loginState = ref.watch(loginNotifierProvider);
+    bool _canTapLoginPageButton =
+        ref.watch(loginNotifierProvider).checkLoginPageButton;
 
     final _emailFocusNode = useFocusNode();
     final _passwordFocusNode = useFocusNode();
@@ -72,13 +73,13 @@ class LoginPage extends HookConsumerWidget {
                   focusNode: _emailFocusNode,
                   hintText: 'sample@sample.com',
                   onChanged: (value) {
-                    _registrationNotifier.setMailAddress(value);
+                    _loginNotifier.setMail(value);
                     if (_emailFieldKey.currentState?.hasError == true) {
                       _emailFieldKey.currentState?.validate();
                     }
                   },
                   validationCallBack: (value) =>
-                      _registrationNotifier.mailValidator(value),
+                      _loginNotifier.mailValidator(value),
                   textInputType: TextInputType.emailAddress,
                 ),
               ],
@@ -90,7 +91,7 @@ class LoginPage extends HookConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const AppText(text: 'パスワード', fontSize: 14),
+                const AppText(text: 'にゃ！（パスワード）', fontSize: 14),
                 const SizedBox(height: 8),
                 AppForm(
                   horizontalPadding: 16,
@@ -103,13 +104,13 @@ class LoginPage extends HookConsumerWidget {
                   focusNode: _passwordFocusNode,
                   hintText: 'パスワード (半角英数字)',
                   onChanged: (value) {
-                    _registrationNotifier.setPassword(value);
+                    _loginNotifier.setPassword(value);
                     if (_passwordFieldKey.currentState?.hasError == true) {
                       _passwordFieldKey.currentState?.validate();
                     }
                   },
                   validationCallBack: (value) =>
-                      _registrationNotifier.passValidator(value),
+                      _loginNotifier.passValidator(value),
                   textInputType: TextInputType.visiblePassword,
                   isIconVisible: true,
                 ),
@@ -124,7 +125,7 @@ class LoginPage extends HookConsumerWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AppText(text: 'パスワードを忘れた方'),
+                const AppText(text: 'パスワードを忘れた方'),
                 const SizedBox(width: 8),
                 SvgPicture.asset(Assets.images.svg.angleRightSolid)
               ],
@@ -135,16 +136,14 @@ class LoginPage extends HookConsumerWidget {
     }
 
     Widget _formButton() {
-      /* Future<void> _onTapRegisterButton() async {
-        _registrationNotifier.requestSignup().then((value) {
-          router.replace(const RegistrationCompleteAccountRoute());
+      Future<void> _onTapLoginButton() async {
+        _loginNotifier.login().then((value) {
+          context.router.replace(const DashboardRoute());
           FocusScope.of(context).unfocus();
-          ref.invalidate(accessTokenProvider);
-          ref.watch(fcmTokenNotifierProvider.notifier).updateFcmToken();
         }, onError: (_) {
-          showErrorDialog(context: context, message: 'サインアップに失敗しました');
+          showErrorDialog(context: context, message: 'ログインに失敗しました');
         });
-      } */
+      }
 
       return Column(
         children: [
@@ -162,22 +161,18 @@ class LoginPage extends HookConsumerWidget {
                 color: AppColors.textWhite,
               ),
               borderRadius: 32,
-              onPressed: () {
-                _canTapSignupPageButton
-                    ? () async {
-                        //_onTapRegisterButton();
-                      }
-                    : null;
-              }),
+              onPressed: _canTapLoginPageButton
+                  ? () async {
+                      _onTapLoginButton();
+                    }
+                  : null)
         ],
       );
     }
 
     Future<bool> _willPopCallback() async {
-      _registrationNotifier.setName('');
-      _registrationNotifier.setMailAddress('');
-      _registrationNotifier.setPassword('');
-      _registrationNotifier.setConfirmPassword('');
+      _loginNotifier.setMail('');
+      _loginNotifier.setPassword('');
       return true;
     }
 
@@ -206,7 +201,7 @@ class LoginPage extends HookConsumerWidget {
                 ),
               ),
             ),
-            if (_registrationState.isLoading) FullScreenIndicator()
+            if (_loginState.isLoading) FullScreenIndicator()
           ],
         ),
       ),

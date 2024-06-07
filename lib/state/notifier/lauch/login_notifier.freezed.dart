@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$LoginItems {
   String get mail => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
+  bool get checkLoginPageButton => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,7 +32,11 @@ abstract class $LoginItemsCopyWith<$Res> {
           LoginItems value, $Res Function(LoginItems) then) =
       _$LoginItemsCopyWithImpl<$Res, LoginItems>;
   @useResult
-  $Res call({String mail, String password, bool isLoading});
+  $Res call(
+      {String mail,
+      String password,
+      bool checkLoginPageButton,
+      bool isLoading});
 }
 
 /// @nodoc
@@ -49,6 +54,7 @@ class _$LoginItemsCopyWithImpl<$Res, $Val extends LoginItems>
   $Res call({
     Object? mail = null,
     Object? password = null,
+    Object? checkLoginPageButton = null,
     Object? isLoading = null,
   }) {
     return _then(_value.copyWith(
@@ -60,6 +66,10 @@ class _$LoginItemsCopyWithImpl<$Res, $Val extends LoginItems>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
+      checkLoginPageButton: null == checkLoginPageButton
+          ? _value.checkLoginPageButton
+          : checkLoginPageButton // ignore: cast_nullable_to_non_nullable
+              as bool,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -76,7 +86,11 @@ abstract class _$$LoginItemsImplCopyWith<$Res>
       __$$LoginItemsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String mail, String password, bool isLoading});
+  $Res call(
+      {String mail,
+      String password,
+      bool checkLoginPageButton,
+      bool isLoading});
 }
 
 /// @nodoc
@@ -92,6 +106,7 @@ class __$$LoginItemsImplCopyWithImpl<$Res>
   $Res call({
     Object? mail = null,
     Object? password = null,
+    Object? checkLoginPageButton = null,
     Object? isLoading = null,
   }) {
     return _then(_$LoginItemsImpl(
@@ -103,6 +118,10 @@ class __$$LoginItemsImplCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
+      checkLoginPageButton: null == checkLoginPageButton
+          ? _value.checkLoginPageButton
+          : checkLoginPageButton // ignore: cast_nullable_to_non_nullable
+              as bool,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -115,7 +134,10 @@ class __$$LoginItemsImplCopyWithImpl<$Res>
 
 class _$LoginItemsImpl implements _LoginItems {
   _$LoginItemsImpl(
-      {this.mail = "", this.password = "", this.isLoading = false});
+      {this.mail = "",
+      this.password = "",
+      this.checkLoginPageButton = false,
+      this.isLoading = false});
 
   @override
   @JsonKey()
@@ -125,11 +147,14 @@ class _$LoginItemsImpl implements _LoginItems {
   final String password;
   @override
   @JsonKey()
+  final bool checkLoginPageButton;
+  @override
+  @JsonKey()
   final bool isLoading;
 
   @override
   String toString() {
-    return 'LoginItems(mail: $mail, password: $password, isLoading: $isLoading)';
+    return 'LoginItems(mail: $mail, password: $password, checkLoginPageButton: $checkLoginPageButton, isLoading: $isLoading)';
   }
 
   @override
@@ -140,12 +165,15 @@ class _$LoginItemsImpl implements _LoginItems {
             (identical(other.mail, mail) || other.mail == mail) &&
             (identical(other.password, password) ||
                 other.password == password) &&
+            (identical(other.checkLoginPageButton, checkLoginPageButton) ||
+                other.checkLoginPageButton == checkLoginPageButton) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, mail, password, isLoading);
+  int get hashCode =>
+      Object.hash(runtimeType, mail, password, checkLoginPageButton, isLoading);
 
   @JsonKey(ignore: true)
   @override
@@ -158,12 +186,15 @@ abstract class _LoginItems implements LoginItems {
   factory _LoginItems(
       {final String mail,
       final String password,
+      final bool checkLoginPageButton,
       final bool isLoading}) = _$LoginItemsImpl;
 
   @override
   String get mail;
   @override
   String get password;
+  @override
+  bool get checkLoginPageButton;
   @override
   bool get isLoading;
   @override
